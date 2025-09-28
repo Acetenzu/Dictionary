@@ -1,0 +1,55 @@
+def Count_Words(word_list):
+    """回傳字典中共有多少個單字"""
+    return len(word_list)
+
+def Find_Longest(word_list):
+    """回傳一個（或多個）tuple，格式為(word, length)，代表最長的單字與他的長度"""
+    if word_list == []:
+        return []
+    
+    lengths = []
+    for word in word_list:
+        lengths.append(len(word))
+    max_length = max(lengths)
+    
+    #收集所有符合最大長度的單字
+    longest_words = []
+    for word in word_list:
+        if len(word) == max_length:
+            longest_words.append((word, len(word)))
+    return longest_words
+
+def Find_Shortest(word_list):
+    if word_list == []:
+        return []
+    
+    lengths = []
+    for word in word_list:
+        lengths.append(len(word))
+    min_length = min(lengths)
+    
+    #收集所有符合最小長度的單字
+    shortest_words = []
+    for word in word_list:
+        if len(word) == min_length:
+            shortest_words.append((word, len(word)))
+    return shortest_words
+
+#方法1：讀取檔案
+# with open('Python/dictionary.txt', 'r') as file:
+#     content = file.read().strip()
+#     word_list = content.split(',')
+    
+#方法2：用input讀取整份字串
+content = input().strip()
+word_list = content.split(',')
+
+total_words = Count_Words(word_list)
+longest_words = Find_Longest(word_list)
+shortest_words = Find_Shortest(word_list)
+
+print(f"總共有{total_words}個單字")
+print("最長的單字有:")
+print(longest_words)
+print("最短的單字有:")
+print(shortest_words)
